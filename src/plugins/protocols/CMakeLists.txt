@@ -64,10 +64,7 @@ if(UNIX AND NOT APPLE AND NOT WIN32 AND NOT ANDROID)
 elseif(WIN32 OR ANDROID)
     install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION plugins)
 elseif(APPLE)
-    set_source_files_properties($<TARGET_FILE:${PROJECT_NAME}>
-        PROPERTIES
-        MACOSX_PACKAGE_LOCATION Resources/plugins
-        )
+    install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/qv2ray.app/Resources/plugins)
 else()
     message(FATAL_ERROR "?")
 endif()
