@@ -61,8 +61,13 @@ endif()
 
 if(UNIX AND NOT APPLE AND NOT WIN32 AND NOT ANDROID)
     install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION share/qv2ray/plugins)
-elseif(WIN32 OR APPLE OR ANDROID)
+elseif(WIN32 OR ANDROID)
     install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION plugins)
+elseif(APPLE)
+    install(TARGETS ${PROJECT_NAME}
+        BUNDLE DESTINATION . COMPONENT Runtime
+        LIBRARY DESTINATION plugins
+        )
 else()
     message(FATAL_ERROR "?")
 endif()
